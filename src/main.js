@@ -83,7 +83,7 @@ for(var index = 0; index < inputWords.length; index++){
 		properties:{
 			color: colorChange(),
 			textAlign:'center',
-			fontSize: '78px',
+			fontSize: '64px',
 			fontWeight: 'bold',
 			marginTop: '0px',
 			fontFamily: 'serif'
