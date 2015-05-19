@@ -1,0 +1,41 @@
+This is the summary of using Famous. I want to take about the pros and cons.
+
+pros:
+1. The APIs in Famous provide a fast way to build web applications with less JavaScript code. 
+For example, the GenericSync class provides developers mouse, touch, and scroll sync altogether at a time.
+All we need to do is to pipe the target surface with the sync object, add some transform changes, and listen to the ‘update’
+event for position.
+
+2. Famous keeps things simple. All content goes to the mainContext created by Engine.createContext() in order to
+display the content on browsers. The Engine, which should be only one, serves as the root of the Tree/Render Tree and
+is like the body tag. Surfaces, Modifiers, Views, or other objects that are added to the tree becomes the leaves of the Tree as HTML elements.
+When using Famous, just keep one simple thing in mind - we are building the tree-like structure.
+  
+3. Making animation becomes easier because StateModifier and Modifier help do the trick. 
+While making transformation in JavaScript/CSS3 is sometimes painful due to position chaining, StateModifier and Modifier simplify
+these traditions by allowing developers to set the transform properties in the object and then we just need to add it to the mainContext.
+Also , with the help from grid, align and origin, we can organize the content in an easy-to-understand way, which makes positioning easier as well.
+
+cons:
+1. Famous uses surfaces to display content, but the surfaces might block the html code. 
+For example, if I have a surface added to the mainContext after I added an input tag in the .html, where type=“submit”,
+this new surface will disable the submit button and the button will become not clickable. 
+Therefore, keeping track of the order of adding surfaces is critical especially when dealing with a large project.
+     
+2. Removing or switching a surface from the mainContext is sometimes a handful especially when the surface is already combined with view and grid.
+Let’s say I have a grid object added to the mainContext, and the grid contains a list of 10 views, and each view has a modifier and a surface.  
+If I want to switch the surfaces in the grid with 6 new surfaces, since the grid has the fixed columns and there are 10 views, 
+I will need to make sure I will have new number of columns for the grid,  6 views, and the remaining 4 surfaces must be removed properly.
+Otherwise, the remaining 4 surfaces will still stay on screen. 
+
+3. Famous uses camelCase for CSS, which is good to distinguish between CSS and Famous CSS. But since CSS of the surface is written in .js, some IDEs
+such as WebStorm does not show the suggest list of choices when we add the properties(the CSS) to the surface, and also not color selection tool shown 
+on the side for color selection as well, which is inconvenient sometimes. 
+
+All in all, I found Famous is very powerful when we use it to make web applications. 
+Their animation feature is unbeatable. It is a very interesting JavaScript framework.
+I hope more people will use it so we can see more beautiful things can be done with Famous.
+
+===========================================================================================================================================
+To code review team:
+Thank you very much for the time spent reading my summary and I look forward to hearing from all of you and the feedback.  
